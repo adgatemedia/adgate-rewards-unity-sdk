@@ -1,7 +1,7 @@
 # AdGate Rewards Unity SDK by AdGate Media 
 Full documentation available here:
 ## Installation
-1.	 Download the latest Unity Package Release.
+1.	 Download the latest Unity Package Release from https://github.com/adgatemedia/adgate-rewards-unity-sdk/releases/download/v1.0.0/AdGateSDKV1.0.0.unitypackage
 2.	 Double-click on the package or drag the package into your Unity scene to import it.
 3.	This SDK depends on the following third-party assets, if you have any of the following in your project please do not reimport them.
 1.	JsonDotNet
@@ -53,6 +53,8 @@ public class AdGateConversionData
 If this callback is fired, it is assumed that connection to the server was successful. However, the conversions variable can be null or an empty array if there is no conversion available at the moment the server request was made.
 
 onConversionDetailsFailedToLoad: A C# delegate action with an error and error code variable. If this is ever fired, the error code can tell you more about what has happened. This would be a standard server error code, while the error message would be any message sent from the server.
+## Example Project
+You can download an Example project from https://github.com/adgatemedia/adgate-rewards-unity-sdk/releases/download/v1.0.0/AdGateExampleProjectV1.0.0.unitypackage , In this project you would find some example code on how to use the SDK. 
 
 ## Updating the SDK
 Please follow the same installation guide above but remember to Untick AdGate/Resources/Config/AdGateConfig.asset from being imported. Otherwise, your config choice will be lost.
