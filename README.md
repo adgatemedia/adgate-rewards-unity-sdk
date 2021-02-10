@@ -1,7 +1,8 @@
 # AdGate Rewards Unity SDK by AdGate Media 
 Full documentation available here:
 ## Installation
-1. Download the latest Unity Package Release from https://github.com/adgatemedia/adgate-rewards-unity-sdk/releases/download/v1.0.0/AdGateSDKV1.0.0.unitypackage
+
+1. Download the latest Unity Package Release from [GitHub Releases page.](https://github.com/adgatemedia/adgate-rewards-unity-sdk/releases/)
 2. Double-click on the package or drag the package into your Unity scene to import it.
 3. This SDK depends on the following third-party assets, if you have any of the following in your project please do not reimport them.
         1. JsonDotNet
@@ -10,16 +11,18 @@ Full documentation available here:
 7. Locate the config file located in AdGate/Resources/Config/AdGateConfig.asset. You can turn debug mode on or off depending on your requirements. Debug messages will be completely ignored by the SDK when this is turned off.
 
 ## Using SDK
-You can see some example code in the AdGate/Examples folder. This documentation explains this a bit more. 
 To start using the SDK, You need to implement usage of the “AdGate” namespace by adding this above the script.
+
 using AdGate;
-Once this is done, you can now use any of the methods available. 
-You have 3 major methods:
+
+Now you can use any of the SDK methods.
+
+Load Offer Wall
 ``` c#
-1.	AdGateManager.LoadOfferWall(string wallCode, string userId, List<string> subIds = null, Action onOfferWallLoadedSuccess = null, Action<int> onOfferWallLoadingFailed = null);
+AdGateManager.LoadOfferWall(string wallCode, string userId, List<string> subIds = null, Action onOfferWallLoadedSuccess = null, Action<int> onOfferWallLoadingFailed = null);
 ```
 
-A good way to use this is by writing the following code:
+Example code:
 
 ``` c#
 public string wallCode;
@@ -41,16 +44,16 @@ AdGateManager.LoadOfferWall(wallCode, userId, subIds,
 });
 ```
 
-### Parameters Required:
-#### wallCode:
-#### userid:
-#### subIds:
+### Parameters:
+#### wallCode: A string that corresponds to the ID of your offer wall, which you can retrieve from [this page.](https://panel.adgatemedia.com/affiliate/vc-walls)
+#### userid: A string that corresponds to the current user accessing the wall
+#### subIds: A list of subids you wish to use. They may be any string up to 255 characters long. The available sub ids are s2, s3, s4, and s5.
 #### onOfferWallLoadedSuccess: A C# delegate action that is called as soon as the offerwall loading succeeded. It does not pass any variable back as it assumes anytime you get this callback, the offerwall loading was successful.
-#### onOfferWallLoadingFailed: A C# delegate action with an error code variable. If this is ever fired, the error code can tell you more about what has happened. You can get more information about the meaning of the codes here https://developer.android.com/reference/android/webkit/WebViewClient 
+#### onOfferWallLoadingFailed: A C# delegate action with an error code variable. If this is ever fired, the error code can tell you more about what has happened. You can get more information about the meaning of the codes [here.](https://developer.android.com/reference/android/webkit/WebViewClient) 
 ``` c#
-2.	AdGateManager.ShowOfferWall(Action onOfferWallShown = null, Action onOfferWallClosed = null);
+AdGateManager.ShowOfferWall(Action onOfferWallShown = null, Action onOfferWallClosed = null);
 ```
-A good way to use this is by writing the following code:
+Example code:
 
 ``` c#
 AdGateManager.ShowOfferWall(() =>
@@ -88,11 +91,12 @@ subIds, (response) =>
 });
 ```
 
-#### vcCode:
-#### userid:
-#### subIds:
+#### wallCode: A string that corresponds to the ID of your offer wall
+#### userid: A string that corresponds to the current user accessing the wall
+#### subIds: A list of subids you wish to use. They may be any string up to 255 characters long. The available sub ids are s2, s3, s4, and s5
 #### onConversionDetailsAvailable: A C# delegate action that is called as soon as conversion details are received from the server. It passes out a variable of ConversionResponse type. 
-Here is a sample of the class structure:
+
+#### Response class structure:
 
 ``` c#    
 public class ConversionResponse : AdGateDefaultResponse
@@ -121,7 +125,7 @@ If this callback is fired, it is assumed that connection to the server was succe
 
 onConversionDetailsFailedToLoad: A C# delegate action with an error and error code variable. If this is ever fired, the error code can tell you more about what has happened. This would be a standard server error code, while the error message would be any message sent from the server.
 ## Example Project
-You can download an Example project from https://github.com/adgatemedia/adgate-rewards-unity-sdk/releases/download/v1.0.0/AdGateExampleProjectV1.0.0.unitypackage , In this project you would find some example code on how to use the SDK. 
+You can download an Example project from [SDK github page.](https://github.com/adgatemedia/adgate-rewards-unity-sdk/releases/download/v1.0.0/AdGateExampleProjectV1.0.0.unitypackage) In this project you would find some example code on how to use the SDK. 
 
 ## Updating the SDK
 Please follow the same installation guide above but remember to Untick AdGate/Resources/Config/AdGateConfig.asset from being imported. Otherwise, your config choice will be lost.
