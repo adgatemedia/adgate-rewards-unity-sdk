@@ -17,6 +17,29 @@ You have 3 major methods:
 ``` c#
 1.	AdGateManager.LoadOfferWall(string wallCode, string userId, List<string> subIds = null, Action onOfferWallLoadedSuccess = null, Action<int> onOfferWallLoadingFailed = null);
 ```
+
+A good way to use this is by writing the following code:
+
+``` c#
+        public string wallCode;
+        public string userId;
+        public List<string> subIds = new List<string>();
+
+            AdGateManager.LoadOfferWall(wallCode, userId, subIds,
+            () =>
+            {
+                offerWallStatus.text = "Offers Loaded";
+                offerWallLoaded = true;
+                showOfferBtn.interactable = true;
+            },
+            (code) =>
+            {
+                loadOfferBtn.interactable = true;
+                showOfferBtn.interactable = false;
+                offerWallStatus.text = "Offer loading failed with errorcode " + code;
+            });
+```
+
 ### Parameters Required:
 #### wallCode:
 #### userid:
@@ -26,29 +49,73 @@ You have 3 major methods:
 ``` c#
 2.	AdGateManager.ShowOfferWall(Action onOfferWallShown = null, Action onOfferWallClosed = null);
 ```
+A good way to use this is by writing the following code:
+
+``` c#
+                AdGateManager.ShowOfferWall(() =>
+                {
+                    offerWallStatus.text = "Offer was shown";
+                },
+                () =>
+                 {
+                     showOfferBtn.interactable = false;
+                     offerWallStatus.text = "No more offers, Please load some more";
+                 });
+```
+
 onOfferWallShown: A C# delegate that is fired once the offerwall has been displayed to the user.
 onOfferWallClosed: A C# delegate that is fired once the offerwall has been closed by the user.
 ``` c#
 3.	AdGateManager.GetConversionDetails(string vcCode, string userId, List<string> subIds = null, Action<ConversionResponse> onConversionDetailsAvailable = null, Action<string, int> onConversionDetailsFailedToLoad = null);
 ```
+A good way to use this is by writing the following code:
+
+``` c#
+            AdGateManager.GetConversionDetails(wallCode, userId,
+            subIds, (response) =>
+             {
+                 if (response.success)
+                 {
+                     conversionBtn.interactable = true;
+                     conversionDetails.text = response.text;
+                 }
+
+             },
+            (message, code) =>
+            {
+                conversionDetails.text = "Conversion Details failed with error " + message;
+                conversionBtn.interactable = true;
+            });
+```
+
 #### vcCode:
 #### userid:
 #### subIds:
 #### onConversionDetailsAvailable: A C# delegate action that is called as soon as conversion details are received from the server. It passes out a variable of ConversionResponse type. 
 Here is a sample of the class structure:
 
-``` c#
+``` c#    
 public class ConversionResponse : AdGateDefaultResponse
 {
-    public AdGateConversionData data { get; set; }
+  public AdGateConversionData data { get; set; }
 }
 
 public class AdGateConversionData
 {
-    public string tool_id { get; set; }
-    public string user_id { get; set; }
-    public AdGateConversion[] conversions { get; set; }
+  public string tool_id { get; set; }
+  public string user_id { get; set; }
+  public AdGateConversion[] conversions { get; set; }
 }
+
+public class AdGateDefaultResponse
+{
+   public int statusCode;
+   public string text;
+   public string status;
+   public bool success;
+   public string message;
+   public string Error;
+ }
 ```
 If this callback is fired, it is assumed that connection to the server was successful. However, the conversions variable can be null or an empty array if there is no conversion available at the moment the server request was made.
 
