@@ -67,11 +67,12 @@ namespace AdGateRequest
             }
             Action<AdGateDefaultResponse> onComplete = (onComplete) =>
             {
-                if (onComplete.status == "success")
+                if (onComplete.success)
                 {
                     AdGateConversionResponse conversionResponse = JsonConvert.DeserializeObject<AdGateConversionResponse>(onComplete.text);
                     conversionResponse.text = onComplete.text;
                     conversionResponse.status = onComplete.status;
+                    conversionResponse.success = onComplete.success;
                     conversionResponse.statusCode = onComplete.statusCode;
                     onOfferWallLoadSuccess?.Invoke(conversionResponse);
                 }

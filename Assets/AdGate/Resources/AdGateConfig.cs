@@ -37,7 +37,7 @@ namespace AdGateRequest
             {
                 for (int i = 0; i < parameters.Count; i++)
                 {
-                    url += AddKeyValueToUrl(GetPrefix() + "s" + (i + 2), RemoveSpace(parameters[i]));
+                    url += AddKeyValueToUrl("&s" + (i + 2), RemoveSpace(parameters[i]));
                 }
             }
             return url;
@@ -46,41 +46,30 @@ namespace AdGateRequest
         string GetDefaultDeviceIdentifiers()
         {
             string url = "";
-            string keyName = "ios_id";
 #if UNITY_IOS
-        keyName = "ios_id";
+            url += AddKeyValueToUrl("ios_id", RemoveSpace(SystemInfo.deviceUniqueIdentifier));
 #elif UNITY_ANDROID
-            keyName = "android_id";
+            url += AddKeyValueToUrl("android_id", RemoveSpace(SystemInfo.deviceUniqueIdentifier));
 #endif
-            url += AddKeyValueToUrl(keyName, RemoveSpace(SystemInfo.deviceUniqueIdentifier));
-
-            url += AddKeyValueToUrl(GetPrefix() + "model", RemoveSpace(SystemInfo.deviceModel));
+            url += AddKeyValueToUrl("&model", RemoveSpace(SystemInfo.deviceModel));
 #if UNITY_IOS
-        url += AddKeyValueToUrl(GetPrefix() + "mfg", "Apple");
+            url += AddKeyValueToUrl("&mfg", "Apple");
 #elif UNITY_ANDROID
-            url += AddKeyValueToUrl(GetPrefix() + "mfg", "Android");
+            url += AddKeyValueToUrl("&mfg", "Android");
 #endif
-            url += AddKeyValueToUrl(GetPrefix() + "osVersion", RemoveSpace(SystemInfo.operatingSystem));
-
+            url += AddKeyValueToUrl("&osVersion", RemoveSpace(SystemInfo.operatingSystem));
 #if UNITY_IOS
-        keyName = GetPrefix() +"aid";
+            url += AddKeyValueToUrl("&aid", RemoveSpace(Application.identifier));
 #elif UNITY_ANDROID
-            keyName = GetPrefix() + "pid";
+            url += AddKeyValueToUrl("&pid", RemoveSpace(Application.identifier));
 #endif
-            url += AddKeyValueToUrl(keyName, RemoveSpace(Application.identifier));
-            url += AddKeyValueToUrl(GetPrefix() + "sdk", "unity");
+            url += AddKeyValueToUrl("&sdk", "unity");
             return url;
         }
 
         string RemoveSpace(string str)
         {
             return Regex.Replace(str, @"\s+", "");
-        }
-
-        string GetPrefix()
-        {
-            string pre = "&";
-            return pre;
         }
 
         string AddKeyValueToUrl(string key, string value)

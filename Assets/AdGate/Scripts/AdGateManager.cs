@@ -50,6 +50,7 @@ namespace AdGate
                 ReloadOfferWall();
             }
         }
+
         /// <summary>
         /// Call first to load the offerwall in the background, it also has callbacks to let you know once it was successfull and if it failed
         /// so you can try again.
@@ -93,17 +94,9 @@ namespace AdGate
             CheckIntialisedState();
             AdGateManager.onOfferWallClosed = onOfferWallClosed;
             if (uniWebViewComponent != null)
-            {
                 OfferWallRequest.ShowOfferWall(uniWebViewComponent);
-                CanvasGroup canvasGroup = uniWebViewComponent.GetComponent<CanvasGroup>();
-                canvasGroup.alpha = 1;
-                canvasGroup.interactable = true;
-                canvasGroup.blocksRaycasts = true;
-            }
             else
-            {
                 onOfferWallShown?.Invoke();
-            }
         }
 
         public static void CloseOfferWall()

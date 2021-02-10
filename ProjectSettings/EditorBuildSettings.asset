@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/AdGate/Examples/Scenes/SampleScene.unity
+    path: Assets/AdGateExamples/Scene/ExampleScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
     path: Assets/AdGate/ThirdParty/UniWebView/Demo/UniWebViewDemo.unity
