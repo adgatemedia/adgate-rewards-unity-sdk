@@ -17,12 +17,12 @@ using AdGate;
 
 Now you can use any of the SDK methods.
 
-Load Offer Wall
+### Load Offer Wall
 ``` c#
 AdGateManager.LoadOfferWall(string wallCode, string userId, List<string> subIds = null, Action onOfferWallLoadedSuccess = null, Action<int> onOfferWallLoadingFailed = null);
 ```
 
-Example code:
+### Example Code:
 
 ``` c#
 public string wallCode;
@@ -50,10 +50,12 @@ AdGateManager.LoadOfferWall(wallCode, userId, subIds,
 #### subIds: A list of subids you wish to use. They may be any string up to 255 characters long. The available sub ids are s2, s3, s4, and s5.
 #### onOfferWallLoadedSuccess: A C# delegate action that is called as soon as the offerwall loading succeeded. It does not pass any variable back as it assumes anytime you get this callback, the offerwall loading was successful.
 #### onOfferWallLoadingFailed: A C# delegate action with an error code variable. If this is ever fired, the error code can tell you more about what has happened. You can get more information about the meaning of the codes [here.](https://developer.android.com/reference/android/webkit/WebViewClient) 
+
+### Show OfferWall
 ``` c#
 AdGateManager.ShowOfferWall(Action onOfferWallShown = null, Action onOfferWallClosed = null);
 ```
-Example code:
+### Example Code:
 
 ``` c#
 AdGateManager.ShowOfferWall(() =>
@@ -72,7 +74,7 @@ onOfferWallClosed: A C# delegate that is fired once the offerwall has been close
 ``` c#
 3.	AdGateManager.GetConversionDetails(string wallCode, string userId, List<string> subIds = null, Action<ConversionResponse> onConversionDetailsAvailable = null, Action<string, int> onConversionDetailsFailedToLoad = null);
 ```
-A good way to use this is by writing the following code:
+### Example Code:
 
 ``` c#
 AdGateManager.GetConversionDetails(wallCode, userId,
@@ -96,7 +98,7 @@ subIds, (response) =>
 #### subIds: A list of subids you wish to use. They may be any string up to 255 characters long. The available sub ids are s2, s3, s4, and s5
 #### onConversionDetailsAvailable: A C# delegate action that is called as soon as conversion details are received from the server. It passes out a variable of ConversionResponse type. 
 
-#### Response class structure:
+#### Response Class Structure:
 
 ``` c#    
 public class ConversionResponse : AdGateDefaultResponse
