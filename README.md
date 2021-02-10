@@ -67,7 +67,7 @@ AdGateManager.ShowOfferWall(() =>
 onOfferWallShown: A C# delegate that is fired once the offerwall has been displayed to the user.
 onOfferWallClosed: A C# delegate that is fired once the offerwall has been closed by the user.
 ``` c#
-3.	AdGateManager.GetConversionDetails(string vcCode, string userId, List<string> subIds = null, Action<ConversionResponse> onConversionDetailsAvailable = null, Action<string, int> onConversionDetailsFailedToLoad = null);
+3.	AdGateManager.GetConversionDetails(string wallCode, string userId, List<string> subIds = null, Action<ConversionResponse> onConversionDetailsAvailable = null, Action<string, int> onConversionDetailsFailedToLoad = null);
 ```
 A good way to use this is by writing the following code:
 
