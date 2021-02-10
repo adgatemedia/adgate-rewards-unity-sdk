@@ -30,7 +30,11 @@ namespace AdGateExample
             offerWallStatus.text = "Showing Offer";
             if (offerWallLoaded)
             {
-                AdGateManager.ShowOfferWall(onOfferWallClosed: () =>
+                AdGateManager.ShowOfferWall(() =>
+                {
+                    offerWallStatus.text = "Offer was shown";
+                },
+                () =>
                  {
                      showOfferBtn.interactable = false;
                      offerWallStatus.text = "No more offers, Please load some more";
@@ -65,7 +69,7 @@ namespace AdGateExample
             conversionBtn.interactable = false;
             conversionDetails.text = "Loading Details";
             AdGateManager.GetConversionDetails(wallCode, userId,
-            null, (response) =>
+            subIds, (response) =>
              {
                  if (response.success)
                  {

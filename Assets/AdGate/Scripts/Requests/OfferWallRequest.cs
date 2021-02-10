@@ -55,15 +55,15 @@ namespace AdGateRequest
             onOfferWallShown?.Invoke(true);
         }
 
-        public static void GetConversionDetails(MonoBehaviour couroutineStarter, string vcCode, string userId, Action<AdGateConversionResponse> onOfferWallLoadSuccess = null, Action<string, int> onOfferWallLoadFailed = null, List<string> subIds = null)
+        public static void GetConversionDetails(MonoBehaviour couroutineStarter, string wallCode, string userId, Action<AdGateConversionResponse> onOfferWallLoadSuccess = null, Action<string, int> onOfferWallLoadFailed = null, List<string> subIds = null)
         {
-            string url = AdGateConfig.current.GetConversionListUrlWithParams(vcCode, userId, subIds);
+            string url = AdGateConfig.current.GetConversionListUrlWithParams(wallCode, userId, subIds);
             if (AdGateConfig.current.debugMode && subIds != null)
             {
                 string allsubids = "";
                 for (int i = 0; i < subIds.Count; i++)
                     allsubids += subIds[i] + ",";
-                AdGateManager.DebugMessage(string.Format("Getting conversion details for vcCode: {0} + userId: {1} and subIds: {2}", vcCode, userId, allsubids));
+                AdGateManager.DebugMessage(string.Format("Getting conversion details for wallCode: {0} + userId: {1} and subIds: {2}", wallCode, userId, allsubids));
             }
             Action<AdGateDefaultResponse> onComplete = (onComplete) =>
             {

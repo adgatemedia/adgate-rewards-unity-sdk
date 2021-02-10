@@ -112,15 +112,15 @@ namespace AdGate
         /// <summary>
         /// This is used to get the conversion details for a user and code
         /// </summary>
-        /// <param name="vcCode"></param>
+        /// <param name="wallCode"></param>
         /// <param name="userId"></param>
         /// <param name="onConversionDetailsAvailable"></param>
         /// <param name="onConversionDetailsFailedToLoad"></param>
         /// <param name="subIds"></param>
-        public static void GetConversionDetails(string vcCode, string userId, List<string> subIds = null, Action<AdGateConversionResponse> onConversionDetailsAvailable = null, Action<string, int> onConversionDetailsFailedToLoad = null)
+        public static void GetConversionDetails(string wallCode, string userId, List<string> subIds = null, Action<AdGateConversionResponse> onConversionDetailsAvailable = null, Action<string, int> onConversionDetailsFailedToLoad = null)
         {
             CheckIntialisedState();
-            OfferWallRequest.GetConversionDetails(_Instance, vcCode, userId, onConversionDetailsAvailable, onConversionDetailsFailedToLoad, subIds);
+            OfferWallRequest.GetConversionDetails(_Instance, wallCode, userId, onConversionDetailsAvailable, onConversionDetailsFailedToLoad, subIds);
         }
 
         public static void DebugMessage(string message, bool isError = false)
