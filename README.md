@@ -2,13 +2,14 @@
 Full documentation available here:
 ## Installation
 
-1. Download the latest Unity Package Release from [GitHub Releases page.](https://github.com/adgatemedia/adgate-rewards-unity-sdk/releases/)
-2. Double-click on the package or drag the package into your Unity scene to import it.
-3. This SDK depends on the following third-party assets, if you have any of the following in your project please do not reimport them.
+1. Clone this repository into a local folder on your computer.
+2. You will find a file named package.json in the root directory of this repository.
+3. Follow the instructions here => https://docs.unity3d.com/Manual/upm-ui-local.html to install the package into your Unity project.
+4. This SDK depends on the following third-party assets, if you have any of the following in your project please do not reimport them.
         1. JsonDotNet
         2. UniWebView
-6. Click import to complete the SDK installation.
-7. Locate the config file located in AdGate/Resources/Config/AdGateConfig.asset. You can turn debug mode on or off depending on your requirements. Debug messages will be completely ignored by the SDK when this is turned off.
+5. Locate the config file located in AdGate/Resources/Config/AdGateConfig.asset. You can turn debug mode on or off depending on your requirements. Debug messages will be completely ignored by the SDK when this is turned off.
+6. (You may choose to install this package with the git url of this repository. However, this will make it impossible to open the ExampleScene).
 
 ## Using SDK
 To start using the SDK, You need to implement usage of the “AdGate” namespace by adding this above the script.
@@ -130,5 +131,5 @@ onConversionDetailsFailedToLoad: A C# delegate action with an error and error co
 You can download an Example project from [SDK github page.](https://github.com/adgatemedia/adgate-rewards-unity-sdk/releases/download/v1.0.0/AdGateExampleProjectV1.0.0.unitypackage) In this project you would find some example code on how to use the SDK. 
 
 ## Updating the SDK
-Please follow the same installation guide above but remember to Untick AdGate/Resources/Config/AdGateConfig.asset from being imported. Otherwise, your config choice will be lost.
+Please follow the same installation guide above but remember to backup and restore AdGate/Resources/Config/AdGateConfig.asset. Otherwise, your config choice will be lost.
 Please also remember that if you made prior changes to the SDK code. It will be overwritten by the new code.
