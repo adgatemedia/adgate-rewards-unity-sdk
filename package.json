@@ -1,0 +1,10 @@
+{
+  "name": "com.adgatemedia.adgaterewards",
+  "version": "1.2.3",
+  "displayName": "AdGate Rewards",
+  "description": "Easily integrate offer walls into Unity.",
+  "dependencies": {
+    "com.unity.nuget.newtonsoft-json": "2.0.0"
+  },
+  "type": "sample"
+}
